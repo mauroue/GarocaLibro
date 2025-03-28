@@ -13,6 +13,7 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path, include
 from django.conf.urls.static import static
@@ -20,10 +21,14 @@ from django.conf import settings
 from core.views import IndexView
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', IndexView.as_view(), name='home'),  # Definindo a URL 'home'
-    path('core/', include('core.urls')),  # Incluindo as URLs do app core sob o prefixo 'core/'
+    path("admin/", admin.site.urls),
+    path("", IndexView.as_view(), name="home"),  # Definindo a URL 'home'
+    path(
+        "core/", include("core.urls")
+    ),  # Incluindo as URLs do app core sob o prefixo 'core/'
+    # path('api/v1/', include('library_app.urls')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 if settings.DEBUG:
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
