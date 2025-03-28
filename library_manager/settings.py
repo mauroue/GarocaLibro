@@ -8,7 +8,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # Configuração de segurança
 SECRET_KEY = os.getenv("SECRET_KEY", default=get_random_secret_key())
-# DEBUG = os.getenv('DEBUG', 'False').lower() == 'true'
+# SECURITY ISSUE: Debug should be False in production
 DEBUG = True
 # ALLOWED_HOSTS com os valores para ambiente local e Heroku
 ALLOWED_HOSTS = ["garoca1-3d0d78d257fa.herokuapp.com", "localhost", "127.0.0.1"]
@@ -83,8 +83,8 @@ else:
         DATABASES["default"].update(
             {
                 "NAME": "DJANGO_G",
-                "USER": "root",  # ou o usuário correto
-                "PASSWORD": "password",  # a senha correta do banco de dados
+                "USER": "root",  # or the correct user
+                "PASSWORD": "password",  # SECURITY ISSUE: hardcoded password
                 "HOST": "172.39.1.5",
                 "PORT": "3306",
                 "OPTIONS": {
